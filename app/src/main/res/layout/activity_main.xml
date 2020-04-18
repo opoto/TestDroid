@@ -24,7 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:checked="false"
         android:clickable="false"
+        android:focusable="auto"
         android:text="Hardware Backed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/android_keystore" />
@@ -34,6 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
         android:text="Key Attestation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hardware_backed" />
@@ -43,7 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:checked="false"
         android:clickable="false"
+        android:focusable="auto"
         android:text="StrongBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/key_attestation" />
