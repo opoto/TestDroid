@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -98,9 +99,35 @@ public class MainActivity extends AppCompatActivity {
             Log.i(this.getClass().getSimpleName(), "root=" + Arrays.toString(rootSN));
             Log.i(this.getClass().getSimpleName(), "All checked passed");
 
+            // BIOMETRICS
+
+
+            final CheckBox bioAvailable = findViewById(R.id.bio_available);
+            final CheckBox bioEnrolled = findViewById(R.id.bio_enrolled);
+            final CheckBox bioReady = findViewById(R.id.bio_ready);
+
+            BiometricManager biometricManager = BiometricManager.from(this);
+            switch (biometricManager.canAuthenticate()) {
+                case BiometricManager.BIOMETRIC_SUCCESS:
+                    bioAvailable.setChecked(true);
+                    bioEnrolled.setChecked(true);
+                    bioReady.setChecked(true);
+                    break;
+                case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                    break;
+                case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                    bioAvailable.setChecked(true);
+                    bioEnrolled.setChecked(true);
+                    break;
+                case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                    bioAvailable.setChecked(true);
+                    break;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
 }

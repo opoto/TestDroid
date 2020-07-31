@@ -6,73 +6,13 @@
     android:layout_height="match_parent"
     tools:context="org.opoto.testdroid.MainActivity">
 
-    <CheckBox
-        android:id="@+id/android_keystore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="auto"
-        android:text="Android Keystore"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/h_keystore" />
-
-    <CheckBox
-        android:id="@+id/hardware_backed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="auto"
-        android:text="Hardware Backed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/android_keystore" />
-
-    <CheckBox
-        android:id="@+id/key_attestation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="auto"
-        android:text="Key Attestation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hardware_backed" />
-
-    <CheckBox
-        android:id="@+id/strongbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="auto"
-        android:text="StrongBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/key_attestation" />
-
-    <TextView
-        android:id="@+id/h_keystore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Supported Keystore"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
     <TextView
         android:id="@+id/h_device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Device info"
+        android:text="@string/device_info"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -96,10 +36,118 @@
                 android:id="@+id/device_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/h_keystore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/supported_keystore"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <CheckBox
+        android:id="@+id/android_keystore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/android_keystore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h_keystore" />
+
+    <CheckBox
+        android:id="@+id/hardware_backed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/hardware_backed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/android_keystore" />
+
+    <CheckBox
+        android:id="@+id/key_attestation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/key_attestation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hardware_backed" />
+
+    <CheckBox
+        android:id="@+id/strongbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/strongbox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/key_attestation" />
+
+    <TextView
+        android:id="@+id/h_biometrics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/biometrics"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strongbox" />
+
+    <CheckBox
+        android:id="@+id/bio_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/bio_is_available"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h_biometrics" />
+
+    <CheckBox
+        android:id="@+id/bio_enrolled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/bio_is_enrolled"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio_available" />
+
+    <CheckBox
+        android:id="@+id/bio_ready"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:checked="false"
+        android:clickable="false"
+        android:focusable="auto"
+        android:text="@string/bio_is_ready"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio_enrolled" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
