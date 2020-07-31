@@ -58,11 +58,6 @@ public class MainActivity extends AppCompatActivity {
         final CheckBox keyAttestation = findViewById(R.id.key_attestation);
         final CheckBox strongbox = findViewById(R.id.strongbox);
 
-        androidKeystore.setChecked(false);
-        hardwareBacked.setChecked(false);
-        keyAttestation.setChecked(false);
-        strongbox.setChecked(false);
-
         try {
 
             KeyStore ks = KeyStore.getInstance(ANDROID_KEYSTORE);
