@@ -2,6 +2,7 @@
     <string name="app_name">TestDroid</string>
     <string name="device_info">Device info</string>
     <string name="biometrics">Biometrics</string>
+    <string name="sensors">Sensors</string>
     <string name="bio_is_available">Bio is available</string>
     <string name="bio_is_enrolled">Bio is enrolled</string>
     <string name="bio_is_ready">Bio is ready</string>
@@ -10,4 +11,5 @@
     <string name="hardware_backed">Hardware Backed</string>
     <string name="key_attestation">Key Attestation</string>
     <string name="strongbox">StrongBox</string>
+    <string name="step_counter">Step Counter</string>
 </resources>
