@@ -26,6 +26,7 @@ import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -65,9 +66,25 @@ public class MainActivity extends AppCompatActivity {
         SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        String SensorTxt = "";
+
+        String[] aSensors = new String[sensors.size()];
+        int sidx = 0;
         for (Sensor _sensor: sensors) {
-            SensorTxt += _sensor.getName() + "\n";
+            String name = _sensor.getName();
+            int i = name.indexOf(" ");
+            if (i > 0 && i < name.length()) {
+                String w1 = name.substring(0, i);
+                if (w1.matches(".*\\d.*")) {
+                    name = name.substring(i+1) + " " + w1;
+                }
+            }
+            aSensors[sidx++] = name;
+        }
+
+        String SensorTxt = "";
+        Arrays.sort(aSensors);
+        for (String _sensor: aSensors) {
+            SensorTxt += _sensor + "\n";
         }
         final CheckBox stepCounter = findViewById(R.id.step_counter);
         stepCounter.setChecked(sensor != null);
@@ -102,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             KeyPair keypair = kpg.generateKeyPair();
             strongbox.setChecked(true);
 
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             Log.e(LOG_TAG, "StrongBox failed: " + ex.toString());
         }
 
