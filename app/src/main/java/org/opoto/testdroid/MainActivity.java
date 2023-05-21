@@ -1,5 +1,6 @@
 package org.opoto.testdroid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -26,7 +27,6 @@ import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     };
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,27 +69,29 @@ public class MainActivity extends AppCompatActivity {
         List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
         String[] aSensors = new String[sensors.size()];
-        int sidx = 0;
+        int sensorIdx = 0;
         for (Sensor _sensor: sensors) {
             String name = _sensor.getName();
             int i = name.indexOf(" ");
-            if (i > 0 && i < name.length()) {
+            if (i > 0 ) {
                 String w1 = name.substring(0, i);
                 if (w1.matches(".*\\d.*")) {
+                    // For better readability and ordering, move sensor type before model ref
+                    // eg "LSM6DSR Accelerometer" -> "Accelerometer LSM6DSR"
                     name = name.substring(i+1) + " " + w1;
                 }
             }
-            aSensors[sidx++] = name;
+            aSensors[sensorIdx++] = name;
         }
 
-        String SensorTxt = "";
+        StringBuilder SensorTxt = new StringBuilder();
         Arrays.sort(aSensors);
         for (String _sensor: aSensors) {
-            SensorTxt += _sensor + "\n";
+            SensorTxt.append(_sensor).append("\n");
         }
         final CheckBox stepCounter = findViewById(R.id.step_counter);
         stepCounter.setChecked(sensor != null);
-        miscTxt.setText(SensorTxt);
+        miscTxt.setText(SensorTxt.toString());
 
         // ============================== KEYSTORE TESTS
 
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         final CheckBox strongbox = findViewById(R.id.strongbox);
 
         Date now = new Date();
-        Date originationEnd = new Date(now.getTime() + 0); // from now
+        Date originationEnd = new Date(now.getTime()); // from now
         Date consumptionEnd = new Date(now.getTime() + (1000 * 24 * 365 * 2)); // 2 years
 
         // Strongbox
@@ -116,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
             kps.setIsStrongBoxBacked(true);
             kpg.initialize(kps.build());
-            KeyPair keypair = kpg.generateKeyPair();
+            kpg.generateKeyPair();
             strongbox.setChecked(true);
 
         } catch (Throwable ex) {
-            Log.e(LOG_TAG, "StrongBox failed: " + ex.toString());
+            Log.e(LOG_TAG, "StrongBox failed: " + ex);
         }
 
         try {
@@ -187,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(LOG_TAG, e.toString());
-            miscTxt.setText("ERROR: " + e.toString());
+            miscTxt.setText("ERROR: " + e);
         }
 
     }
